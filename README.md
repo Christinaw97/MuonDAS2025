@@ -2,7 +2,12 @@
 
 ## Facilitators
 
-- Jan-Frederik Schulte (jschulte@cern.ch)
+- Christina Wang 
+- Daniel Wilbern
+- Chris Cosby
+- Tamer Elkafrawy
+- Beren Ozek
+
 
 ## Technical setup
 
