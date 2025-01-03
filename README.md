@@ -8,10 +8,11 @@
 - Tamer Elkafrawy
 - Beren Ozek
 
+This tutorial is forked from the Muon HATS offered in 2024: https://github.com/JanFSchulte/MuonHATS
 
 ## Technical setup
 
-This exercise is designed for, and tested at, the [Purdue Analysis Facility](https://analysis-facility.physics.purdue.edu/en/latest/) (AF). In general, it is expected to run where the following requirements are fulfilled:
+This exercise is tested at in CMSLPC EL9. In general, it is expected to run where the following requirements are fulfilled:
 
 * python3
 * uproot
@@ -24,31 +25,68 @@ This exercise is designed for, and tested at, the [Purdue Analysis Facility](htt
 * coffea 
 * boost
 
-However, the input files used in the exercises are specific to the Purdue AF and will need to be replaced when running somewhere else. 
+However, the input files used in the exercises are specific to the LPC and will need to be replaced when running somewhere else. 
 
-Before the live session, please make sure that you can access Purdue Analysis Facility using the instructions below. 
+## Technical setup in cmslpc
 
-1. Navigate to the [Purdue AF website](https://analysis-facility.physics.purdue.edu/) and click “Login to Purdue Analysis Facility”.
-2. On the CILogon page, choose CERN account to log in (using Fermilab or Purdue credentials is also possible).
-3. You will be redirected to the “Server Options” page. The default resource selection (4 CPUs, 16 GB RAM) is enough for the HATS exercises, but you can select more resources if needed. **Do not add GPUs to your session – there are not enough GPUs for all participants.**
-4. Click “Start” to create your Analysis Facility session. It may take a couple of minutes to load.
-5. Done! Your session is ready.
+Open a terminal/console, connect to cmslpc-el9 and prepare your working area:
 
-<details>
-  <summary>Additional details</summary>
-  
-- As a CMS member, you can continue using Purdue AF for your work after HATS is over.
-- Your Purdue AF session will keep running even if you close your web browser tab, so you can reconnect to it at any time. Idle sessions are terminated after 14 days.
-- When you log in for the first time, we create a 25 GB private directory for you at `/home/<username>`, and a shared `/work/users/<username>` directory with 100 GB quota. These directories will persist for 6 months after your last activity at Purdue AF.
-- Browse the [documentation](https://analysis-facility.physics.purdue.edu/) to learn more about available functionality.
-
-
-```
-git clone https://github.com/JanFSchulte/MuonHATS.git
-cd MuonHATS
+```bash
+kinit username@FNAL.GOV
+ssh -L localhost:8888:localhost:8888 <YOUR USERNAME>@cmslpc-el9.fnal.gov
 ```
 
-The repository will appear in the folder structure in the sidebar. It contains four notebooks that can be access simply via this file browser. When starting each of the notebooks, select the `HATS 2024` kernel, which has all required packages installed. When running somewhere else, the included `environment.yml` can be used to create a compatible conda environment. 
+If you haven't done it yet, go to your `nobackup` area (`/uscms_data/d3/<YOUR USERNAME>/`) and create a folder for the CMSDAS exercises. Once you are there you can setup the CMSSW environment and clone our repository:
+
+```bash
+git clone git@github.com:Christinaw97/MuonDAS2025.git
+cd MuonDAS2025
+```
+
+The following commands one has to do it *everytime you log in into a new session*. They load the
+environment and the packages needed for the exercises and open a jupyter notebook:
+
+```bash
+source /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-el9-gcc11-opt/setup.sh
+jupyter notebook --no-browser --port=8888 --ip 127.0.0.1
+```
+
+Note that the port number `8888` needs to match the port number you log-in to `cmslpc`.
+If someone has taken the `8888` port on the cmslpc node, you will need to use another one. 
+
+If these two lines are running sucessfully, you should see something like this:
+
+```
+[I 16:02:17.479 NotebookApp] Serving notebooks from local directory: /uscms_data/d3/kkwok/cmsdas/MDS_Ex/MDS_CMSDAS
+[I 16:02:17.480 NotebookApp] Jupyter Notebook 6.4.0 is running at:
+[I 16:02:17.480 NotebookApp] http://127.0.0.1:8888/?token=6aaf053d114b42696b20bc6df83c1c9078e1253a91cce3b3
+[I 16:02:17.480 NotebookApp]  or http://127.0.0.1:8888/?token=6aaf053d114b42696b20bc6df83c1c9078e1253a91cce3b3
+[I 16:02:17.480 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 16:02:17.516 NotebookApp] 
+    
+    To access the notebook, open this file in a browser:
+        file:///uscms/homes/k/kkwok/.local/share/jupyter/runtime/nbserver-26071-open.html
+    Or copy and paste one of these URLs:
+        http://127.0.0.1:8888/?token=6aaf053d114b42696b20bc6df83c1c9078e1253a91cce3b3
+     or http://127.0.0.1:8888/?token=6aaf053d114b42696b20bc6df83c1c9078e1253a91cce3b3
+```
+
+Copy and paste one of the last two urls in your favorite browser and now you can continue with `Exercise-1-Introduction.ipynb`
+
+
+## Useful tips
+
+Since we launch jupyter server frequently, you can make an `alias` for that command in your `~/.bashrc` file
+```bash
+alias sourcelcg='source /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-el9-gcc11-opt/setup.sh'
+alias launchJupyter='jupyter notebook --no-browser --port=8888 --ip 127.0.0.1'
+```
+
+then you can just do 
+```bash
+sourcelcg
+launchJupyter
+```
 
 ## Introduction: General information on muons in CMS
 
