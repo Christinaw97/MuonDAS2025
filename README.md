@@ -1,4 +1,4 @@
-# Muon Hands-On Tutorial Session
+# Muon Short Exercise 2025
 
 ## Facilitators
 
@@ -27,9 +27,7 @@ This exercise is tested at in CMSLPC EL9. In general, it is expected to run wher
 
 However, the input files used in the exercises are specific to the LPC and will need to be replaced when running somewhere else. 
 
-## Technical setup in cmslpc
-
-Open a terminal/console, connect to cmslpc-el9 and prepare your working area:
+To start the short exercise, open a terminal/console, connect to cmslpc-el9 and prepare your working area:
 
 ```bash
 kinit username@FNAL.GOV
@@ -74,7 +72,7 @@ If these two lines are running sucessfully, you should see something like this:
 Copy and paste one of the last two urls in your favorite browser and now you can continue with `Exercise-1-Introduction.ipynb`
 
 
-## Useful tips
+### Useful tips
 
 Since we launch jupyter server frequently, you can make an `alias` for that command in your `~/.bashrc` file
 ```bash
