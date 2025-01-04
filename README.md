@@ -27,6 +27,10 @@ This exercise is tested at in CMSLPC EL9. In general, it is expected to run wher
 
 However, the input files used in the exercises are specific to the LPC and will need to be replaced when running somewhere else. 
 
+<details>
+  <summary>Additional details</summary>
+
+
 To start the short exercise, open a terminal/console, connect to cmslpc-el9 and prepare your working area:
 
 ```bash
