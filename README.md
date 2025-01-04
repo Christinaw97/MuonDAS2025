@@ -96,7 +96,7 @@ Information about muon selections can be found on this [Twiki page](https://twik
 
 ## Exercise 1: Introduction, muon object, main variables
 
-In this exercise we will get familiar with the muon objects in a nanoAOD file. We will mostly a NANOAODSIM file, containing simulated Drell–Yan dimuon events generated at NLO with the program MadGraph.
+In this exercise we will get familiar with the muon objects in a nanoAOD file. We will mostly use a NANOAODSIM file, containing simulated Drell–Yan dimuon events generated at NLO with the program MadGraph.
 
 Now please open Exercise-1-Introduction.ipynb. and follow the instructions in the notebook, run and modify the code. In this exercise, we will see how to interact with the NanoAOD content directly, using `uproot` and `awkward` arrays. In the following exercises, we will use the `coffea` framework instead as a higher-level interface to make our life easier. 
 
