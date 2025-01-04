@@ -215,14 +215,14 @@ bool muon::isLooseMuon(const reco::Muon& muon) {
 ```
 bool pat::Muon::isMediumMuon()
 bool muon::isMediumMuon(const reco::Muon& muon) {
-    if( !( isLooseMuon(muon) && muon.innerTrack()-&gt;validFraction()&gt;0.8 )) return false;
+    if( !( isLooseMuon(muon) && muon.innerTrack()->validFraction() > 0.8 )) return false;
 
     bool goodGlb = muon.isGlobalMuon() &&
-        muon.globalTrack()-&gt;normalizedChi2()&lt;3. &&
-        muon.combinedQuality().chi2LocalPosition&lt;12. &&
-        muon.combinedQuality().trkKink&lt;20.;
+        muon.globalTrack()->normalizedChi2() < 3. &&
+        muon.combinedQuality().chi2LocalPosition < 12. &&
+        muon.combinedQuality().trkKink < 20.;
 
-    return (segmentCompatibility(muon) &gt; (goodGlb ? 0.303 : 0.451));
+    return (segmentCompatibility(muon) > (goodGlb ? 0.303 : 0.451));
 }
 ```
 
@@ -232,10 +232,9 @@ bool muon::isMediumMuon(const reco::Muon& muon) {
 bool pat::Muon::isTightMuon(const reco::Vertex& vtx)
 bool muon::isTightMuon(const reco::Muon& muon, const reco::Vertex& vtx) {
     if(!muon.isPFMuon() || !muon.isGlobalMuon()) return false;
-    bool muID = muon.isGlobalMuon() && muon.globalTrack()-&gt;normalizedChi2()hitPattern().numberOfValidMuonHits()&gt;0 && muon.numberOfMatchedStations()&gt;1;  
-    bool hits = muon.innerTrack()-&gt;hitPattern().trackerLayersWithMeasurement()&gt;5 && muon.innerTrack()-&gt;hitPattern().numberOfValidPixelHits()&gt;0;
-    bool ip = fabs(muon.muonBestTrack()-&gt;dxy(vtx.position()))dz(vtx.position()))&lt;0.5;
-
+    bool muID = muon.isGlobalMuon() && muon.globalTrack()->normalizedChi2() < 10 && muon.globalTrack()->hitPattern().numberOfValidMuonHits() > 0 && muon.numberOfMatchedStations() > 1;  
+    bool hits = muon.innerTrack()->hitPattern().trackerLayersWithMeasurement() > 5 && muon.innerTrack()->hitPattern().numberOfValidPixelHits() > 0;
+    bool ip = fabs(muon.muonBestTrack()->dz(vertex->position())) < 0.5 && fabs(muon.muonBestTrack()->dxy(vertex->position())) < 0.2;
     return muID && hits && ip;
 }
 ```
@@ -248,10 +247,11 @@ bool muon::isSoftMuon(const reco::Muon& muon, const reco::Vertex& vtx) {
     bool muID = muon::isGoodMuon(muon, TMOneStationTight);
     if(!muID) return false;
 
-    bool layers = muon.innerTrack()-&gt;hitPattern().trackerLayersWithMeasurement()&gt;5 &&
-        muon.innerTrack()-&gt;hitPattern().pixelLayersWithMeasurement()&gt;0;
+    bool layers = muon.innerTrack()->hitPattern().trackerLayersWithMeasurement() > 5 &&
+        muon.innerTrack()->hitPattern().pixelLayersWithMeasurement() > 0;
     bool ishighq = muon.innerTrack()-&gt;quality(reco::Track::highPurity);
-    bool ip = fabs(muon.innerTrack()-&gt;dxy(vtx.position()))dz(vtx.position()))&lt;20.;
+    bool ip = fabs(muon.innerTrack()->dxy(vertex->position())) < 0.3 && fabs(muon.innerTrack()->dz(vertex->position())) < 20.;
+  
 
     return layers && ip && ishighq;
 }
@@ -262,15 +262,15 @@ bool muon::isSoftMuon(const reco::Muon& muon, const reco::Vertex& vtx) {
 ```
 bool pat::Muon::isHighPtMuon(const reco::Vertex& vtx)
 bool muon::isHighPtMuon(const reco::Muon& muon, const reco::Vertex& vtx){
-    bool muID = muon.isGlobalMuon() && muon.globalTrack()-&gt;hitPattern().numberOfValidMuonHits()&gt;0 && (muon.numberOfMatchedStations()&gt;1);
+    bool muID = muon.isGlobalMuon() && muon.globalTrack()->hitPattern().numberOfValidMuonHits() > 0 && (muon.numberOfMatchedStations() > 1);
     if(!muID) return false;
 
-    bool hits = muon.innerTrack()-&gt;hitPattern().trackerLayersWithMeasurement()&gt;5 &&
-        muon.innerTrack()-&gt;hitPattern().numberOfValidPixelHits()&gt;0;
-    bool momQuality = muon.tunePMuonBestTrack()-&gt;ptError()/muon.tunePMuonBestTrack()-&gt;pt()&lt;0.3;
-    bool ip = fabs(muon.innerTrack()-&gt;dxy(vtx.position()))dz(vtx.position()))&lt;0.5;
+    bool hits = muon.innerTrack()->hitPattern().trackerLayersWithMeasurement() > 5 &&
+        muon.innerTrack()->hitPattern().numberOfValidPixelHits() > 0;
+    bool momQuality = muon.tunePMuonBestTrack()->ptError()/muon.tunePMuonBestTrack()->pt() < 0.3;
+    bool ip = fabs(muon.innerTrack()->dz(vertex->position())) < 0.5	&& fabs(muon.innerTrack()->dxy(vertex->position())) < 0.2;
 
-  return muID && hits && momQuality && ip;
+    return muID && hits && momQuality && ip;
 }
 ```
 
