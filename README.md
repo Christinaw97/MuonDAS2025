@@ -10,7 +10,7 @@
 
 This tutorial is forked from the Muon HATS offered in 2024: https://github.com/JanFSchulte/MuonHATS
 
-## Technical setup
+## Setup Environment
 
 This exercise is tested at in CMSLPC EL9. In general, it is expected to run where the following requirements are fulfilled:
 
@@ -30,6 +30,7 @@ However, the input files used in the exercises are specific to the LPC and will 
 <details>
   <summary>Additional details</summary>
 
+## Setup on CMSLPC
 
 To start the short exercise, open a terminal/console, connect to cmslpc-el9 and prepare your working area:
 
