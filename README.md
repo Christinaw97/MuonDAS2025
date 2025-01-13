@@ -2,11 +2,11 @@
 
 ## Facilitators
 
-- Christina Wang 
-- Daniel Wilbern
+- Christina Wang
+- Michael Carrigan
 - Chris Cosby
-- Tamer Elkafrawy
 - Beren Ozek
+- Daniel Wilbern
 
 This tutorial is forked from the Muon HATS offered in 2024: https://github.com/JanFSchulte/MuonHATS
 
