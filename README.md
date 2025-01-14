@@ -42,7 +42,7 @@ ssh -L localhost:8888:localhost:8888 <YOUR USERNAME>@cmslpc-el9.fnal.gov
 If you haven't done it yet, go to your `nobackup` area (`/uscms_data/d3/<YOUR USERNAME>/`) and create a folder for the CMSDAS exercises. Once you are there you can setup the CMSSW environment and clone our repository:
 
 ```bash
-git clone git@github.com:Christinaw97/MuonDAS2025.git
+git clone git@github.com:FNALLPC/MuonDAS2025.git
 cd MuonDAS2025
 ```
 
